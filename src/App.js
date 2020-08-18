@@ -10,19 +10,24 @@ const getRandomCoordinates = () => {
   return [x,y]
 }
 
-const initialState = {
-  food: getRandomCoordinates(),
-  speed: 200,
-  direction: 'RIGHT',
-  snakeDots: [
-    [0,0],
-    [2,0]
-  ]
-}
+/** 
+ * Speed not working properly.
+ * Snake goes backwards if only 2 dots.
+ * Add points and messages. Button to start new game.
+ * Decrease frame size and improve looks. 
+ **/
 
 class App extends Component {
 
-  state = initialState;
+  state = {
+    food: getRandomCoordinates(),
+    speed: 200,
+    direction: 'RIGHT',
+    snakeDots: [
+      [0,0],
+      [2,0]
+    ]
+  }
 
   componentDidMount() {
     setInterval(this.moveSnake, this.state.speed);
@@ -51,6 +56,8 @@ class App extends Component {
       case 39:
         this.setState({direction: 'RIGHT'});
         break;
+
+      default:
     }
   }
 
@@ -71,6 +78,8 @@ class App extends Component {
       case 'UP':
         head = [head[0], head[1] - 2];
         break;
+
+      default:
     }
     dots.push(head);
     dots.shift();
@@ -127,7 +136,7 @@ class App extends Component {
 
   onGameOver() {
     alert(`Game Over. Snake length is ${this.state.snakeDots.length}`);
-    this.setState(initialState)
+    this.setState(this.state)
   }
 
   render() {
