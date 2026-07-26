@@ -1,17 +1,17 @@
-import React from 'react';
+import React from "react";
 
-export default (props) => {
+function Snake({ snakeDots }) {
   return (
-    <div>
-      {props.snakeDots.map((dot, i) => {
+    <>
+      {snakeDots.map((dot, idx) => {
         const style = {
           left: `${dot[0]}%`,
           top: `${dot[1]}%`
-        }
-        return (
-          <div className="snake-dot" key={i} style={style}></div>
-        )
+        };
+        return <div className="snake-dot" key={idx} style={style} />;
       })}
-    </div>
-  )
+    </>
+  );
 }
+
+export default Snake;
